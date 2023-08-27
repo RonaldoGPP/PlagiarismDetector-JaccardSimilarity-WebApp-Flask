@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Plagiatize</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{{ url_for('static', filename='asset/te.png') }}" rel="icon">
+  <link href="{{ url_for('static', filename='asset/te.png') }}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{{ url_for('static', filename='lib/nivo-slider/css/nivo-slider.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='lib/owlcarousel/owl.transitions.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='lib/venobox/venobox.css') }}" rel="stylesheet">
+
+  <!-- Nivo Slider Theme -->
+  <link href="{{ url_for('static', filename='css/nivo-slider-theme.css') }}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styl.css') }}">
+
+  <!-- Responsive Stylesheet File -->
+  <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='lib/knob/jquery.knob.js') }}"></script>
+  <script src="{{ url_for('static', filename='lib/appear/jquery.appear.js') }}"></script>
+
+  <!-- =======================================================
+    Theme Name: eBusiness
+    Theme URL: https://bootstrapmade.com/ebusiness-bootstrap-corporate-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body data-spy="scroll" data-target="#navbar-example">
+
+  <div id="preloader"></div>
+
+  <header>
+    <!-- header-area start -->
+    <div id="sticker" class="header-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-default">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-example-navbar-collapse-1" aria-expanded="false">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+                <!-- Brand -->
+                <a class="navbar-brand page-scroll sticky-logo" href="{{url_for('home')}}">
+                  <!-- Uncomment below if you prefer to use an image logo -->
+                  <!-- <img src="img/logo.png" alt="" title=""> -->
+                  <a href="{{url_for('home')}}"><img src="{{ url_for('static', filename='asset/te.png') }}" alt="logo"></a>
+								</a>
+              </div>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse main-menu bs-example-navbar-collapse-1" id="navbar-example">
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="active">
+                    <a class="page-scroll" href="#home">Home</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" href="#about">About</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" href="#services">Services</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" href="#team">Team</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" href="{{url_for('uploadform')}}">Upload File</a>
+                  </li>
+                  {% if logged_in %}
+                  <li>
+                    <a class="page-scroll" href="{{ url_for('logout') }}">Logout</a>
+                  </li>
+                  {% else %}
+                  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In / Sign up<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a class="signin" href=#login >Sign In</a></li>
+                      <li><a class="signup" href=#register >Sign Up</a></li>
+                    </ul> 
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
+              <!-- navbar-collapse -->
+            </nav>
+            <!-- END: Navigation -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- header-area end -->
+  </header>
+  <!-- header end -->
+  
+  <div class="user-modal">
+        <div class="user-modal-containerr">
+            <ul class="switcher">
+                <li><a href="#login">Sign in</a></li>
+                <li><a href="#register">New account</a></li>
+            </ul>
+
+            <div id="login">
+              <form class="form" id="login-form" method="POST" action="{{ url_for('login') }}">
+                  <p class="fieldset">
+                      <label class="image-replace email" for="signin-email">E-mail</label>
+                      <input class="full-width has-padding has-border" id="signin-email" name="signin-email" type="email"
+                          placeholder="E-mail" required>
+                      
+                  </p>
+                  <p class="fieldset">
+                      <label class="image-replace password" for="signin-password">Password</label>
+                      <input class="full-width has-padding has-border" id="signin-password" name="signin-password"
+                          type="password" placeholder="Password" required>
+                      <a href="#0" class="hide-password">Show</a>
+                      
+                  </p>
+                  <p class="fieldset">
+                      <input type="checkbox" id="remember-me" checked>
+                      <label for="remember-me">Remember me</label>
+                  </p>
+                  <p class="fieldset">
+                      <input class="full-width" type="submit" value="Login">
+                      <span class="error-message" id="login-error"></span>
+                  </p>
+                  <p class="form-bottom-message"><a href="#0">Forgot your password?</a></p>
+              </form>
+          </div>
+
+          <div id="signup">
+            <form class="form" id="signup-form" method="POST" action="{{ url_for('signup') }}">
+                <p class="fieldset">
+                    <label class="image-replace username" for="signup-username">Username</label>
+                    <input class="full-width has-padding has-border" id="signup-username" name="signup-username" type="text"
+                        placeholder="Username" required>
+                        
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace email" for="signup-email">E-mail</label>
+                    <input class="full-width has-padding has-border" id="signup-email" name="signup-email" type="email"
+                        placeholder="E-mail" required>
+                        
+                </p>
+                <p class="fieldset">
+                    <label class="image-replace password" for="signup-password">Password</label>
+                    <input class="full-width has-padding has-border" id="signup-password" name="signup-password" type="password"
+                        placeholder="Password" required>
+                    <a href="#0" class="hide-password">Show</a>
+                </p>
+                <p class="fieldset">
+                    <input class="full-width" type="submit" value="Sign Up">
+                    <span class="error-message" id="signup-error"></span>
+                </p>
+            </form>
+            
+        </div>
+                <!-- <a href="#0" class="cd-close-form">Close</a> -->
+            </div>
+
+            <div id="reset-password">
+                <p class="form-message">Lost your password? Please enter your email address.</br> You will receive a
+                    link to create a new password.</p>
+
+                <form class="form">
+                    <p class="fieldset">
+                        <label class="image-replace email" for="reset-email">E-mail</label>
+                        <input class="full-width has-padding has-border" id="reset-email" type="email"
+                            placeholder="E-mail">
+                        <span class="error-message">An account with this email does not exist!</span>
+                    </p>
+
+                    <p class="fieldset">
+                        <input class="full-width has-padding" type="submit" value="Reset password">
+                    </p>
+                </form>
+
+                <p class="form-bottom-message"><a href="#0">Back to log-in</a></p>
+            </div>
+            <a href="#0" class="close-form">Close</a>
+        </div>
+        
+    </div>
+  
+
+  <!-- Start Slider Area -->
+  <div id="home" class="slider-area">
+    <div class="bend niceties preview-2">
+      <div id="ensign-nivoslider" class="slides">
+        <img src="{{ url_for('static', filename='img/slider/slider1.jpg') }}" alt="" title="#slider-direction-1" />
+        <img src="{{ url_for('static', filename='img/slider/slider2.jpg') }}" alt="" title="#slider-direction-2" />
+        <img src="{{ url_for('static', filename='img/slider/slider3.jpg') }}" alt="" title="#slider-direction-3" />
+      </div>
+
+      <!-- direction 1 -->
+      <div id="slider-direction-1" class="slider-direction slider-one">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="slider-content">
+                <!-- layer 1 -->
+                <div class="layer-1-1 hidden-xs wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
+                  <h2 class="title1">The Best Plagiarism Checker in Indonesia</h2>
+                </div>
+                <!-- layer 2 -->
+                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                  <h1 class="title2">We're In The Move Of Helping You Pass Your Thesis</h1>
+                </div>
+                <!-- layer 3 -->
+                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
+                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- direction 2 -->
+      <div id="slider-direction-2" class="slider-direction slider-two">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="slider-content text-center">
+                <!-- layer 1 -->
+                <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <h2 class="title1">The Best Plagiarism Checker in Indonesia</h2>
+                </div>
+                <!-- layer 2 -->
+                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                  <h1 class="title2">We're In The Move Of Get Quality Plagiarism Checker Service</h1>
+                </div>
+                <!-- layer 3 -->
+                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
+                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- direction 3 -->
+      <div id="slider-direction-3" class="slider-direction slider-two">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="slider-content">
+                <!-- layer 1 -->
+                <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <h2 class="title1">The Best Plagiarism Checker in Indonesia</h2>
+                </div>
+                <!-- layer 2 -->
+                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                  <h1 class="title2">Helping You to Make Your Dream Come True</h1>
+                </div>
+                <!-- layer 3 -->
+                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
+                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Slider Area -->
+
+  <!-- Start About area -->
+  <div id="about" class="about-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>About Plagiatize</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- single-well start-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-left">
+            <div class="single-well">
+              <a href="#">
+								  <img src="asset/plagiarism.png" alt="">
+								</a>
+            </div>
+          </div>
+        </div>
+        <!-- single-well end-->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="well-middle">
+            <div class="single-well">
+              <a href="#">
+                <h4 class="sec-head">This Is About Plagiatize</h4>
+              </a>
+              <p>
+                Plagiatize can check all your task, with the best accurate system
+              </p>
+              <ul>
+                <li>
+                  <i class="fa fa-check"></i> DOCX Plagiarism Checker
+                </li>
+                <li>
+                  <i class="fa fa-check"></i> PDF Plagiarism Checker
+                </li>
+                <li>
+                  <i class="fa fa-check"></i> TEXT Plagiarism Checker
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- End col-->
+      </div>
+    </div>
+  </div>
+  <!-- End About area -->
+
+  <!-- Start Service area -->
+  <div id="services" class="services-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline services-head text-center">
+            <h2>Our Services</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="services-contents">
+          <!-- Start Left services -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+											<i class="fa fa-code"></i>
+										</a>
+                  <h4>DOCX Plagiarism Checker</h4>
+                  <p>
+                    Will check all about your text in file .docx
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+											<i class="fa fa-code"></i>
+										</a>
+                  <h4>PDF Plagiarism Checker</h4>
+                  <p>
+                    Will check all about your text in file .pdf
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <!-- end col-md-4 -->
+            <div class=" about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+											<i class="fa fa-code"></i>
+										</a>
+                  <h4>TEXT Plagiarism Checkerr</h4>
+                  <p>
+                    Will check all about your text in file .txt
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Service area -->
+
+  
+  
+  <!-- Start team Area -->
+  <div id="team" class="our-team-area area-padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="section-headline text-center">
+            <h2>Our special Team</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="team-top">
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+										<img src="{{ url_for('static', filename='img/team/ansell.jpeg') }}" alt="">
+									</a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-facebook"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-twitter"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-instagram"></i>
+												</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Yefta Nathaniel</h4>
+                <p>Chairman & Backend</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+										<img src="{{ url_for('static', filename='img/team/ansell.jpeg') }}" alt="">
+									</a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-facebook"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-twitter"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-instagram"></i>
+												</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Azarya Kairossutan</h4>
+                <p>Backend</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+										<img src="{{ url_for('static', filename='img/team/ansell.jpeg') }}" alt="">
+									</a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-facebook"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-twitter"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-instagram"></i>
+												</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Matius Ansell Yananto</h4>
+                <p>Web Design & Frontend</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+										<img src="{{ url_for('static', filename='img/team/ansell.jpeg') }}" alt="">
+									</a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-facebook"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-twitter"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-instagram"></i>
+												</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Ronaldo Gunawan</h4>
+                <p>Backend</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+          <div class="col-md-3 col-sm-3 col-xs-12">
+            <div class="single-team-member">
+              <div class="team-img">
+                <a href="#">
+										<img src="{{ url_for('static', filename='img/team/ansell.jpeg') }}" alt="">
+									</a>
+                <div class="team-social-icon text-center">
+                  <ul>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-facebook"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-twitter"></i>
+												</a>
+                    </li>
+                    <li>
+                      <a href="#">
+													<i class="fa fa-instagram"></i>
+												</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="team-content text-center">
+                <h4>Gregorius Sambirin</h4>
+                <p>Frontend</p>
+              </div>
+            </div>
+          </div>
+          <!-- End column -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Team Area -->
+
+
+
+  
+  <!-- Start contact Area -->
+  <div id="contact" class="contact-area">
+    <div class="contact-inner area-padding">
+      <div class="contact-overly"></div>
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline text-center">
+              <h2>Contact us</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Start contact icon column -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <a href="https://wa.me/6283850068198"><i class="fa fa-mobile"></i></a>
+                <p>
+                  Whatsapp : 081234567891<br>
+                  <span>Monday-Friday (09.00 - 18.00 WIB)</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Start contact icon column -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <i class="fa fa-envelope-o"></i>
+                <p>
+                  Email: plagiatizeofficial@gmail.com<br>
+                  <span>Web: www.plagiatize.com</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Start contact icon column -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="contact-icon text-center">
+              <div class="single-icon">
+                <a href="https://instagram.com/matius_ansell4"><i class="fa fa-map-marker"></i></a>
+                <div class="topic">Address</div>
+                <div class="text-one">Jl. Siwalankerto No.121-131, Siwalankerto, Kec. Wonocolo, Surabaya, Jawa Timur 60236</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <!-- Start Google Map -->
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <!-- Start Map -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.1276656595765!2d112.73498897446412!3d-7.339557192668999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb4867925b0b%3A0xd06ae2d4f0af3f59!2sPetra%20Christian%20University!5e0!3m2!1sen!2sid!4v1684693767427!5m2!1sen!2sid" width="1200" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <!-- End Map -->
+          </div>
+          <!-- End Google Map -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Contact Area -->
+
+  <!-- Start Footer bottom Area -->
+  <footer>
+    <div class="footer-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <div class="footer-logo">
+                  <a href="{{url_for('home')}}"><img src="{{ url_for('static', filename='asset/logoPlagiatize.png') }}" alt="logo"></a>
+                </div>
+
+                <p>The Best Plagiarism Checker in Indonesia. We're In The Move Of Helping You Pass Your Thesis. We're In The Move Of Get Quality Plagiarism Checker Service. Helping You to Make Your Dream Come True</p>
+                <div class="footer-icons">
+                  <ul>
+                    <li>
+                      <a href="https://wa.me/6283850068198"><i class="fa fa-whatsapp"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://instagram.com/matius_ansell4"><i class="fa fa-instagram"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.google.co.id/maps/search/McDonald's/@-7.3395572,112.7375639,17z"><i class="fa fa-map-marker"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end single footer -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <h4>information</h4>
+                <p>
+                  We Always Ready, Everytime, Everywhere when you need
+                </p>
+                <div class="footer-contacts">
+                  <p><span>Whatsapp :</span> 081234567891</p>
+                  <p><span>Email :</span> plagiatizeofficial@gmail.com</p>
+                  <p><span>Working Time :</span> Monday-Friday (09.00 - 18.00 WIB)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end single footer -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="footer-content">
+              <div class="footer-head">
+                <h4>Instagram</h4>
+                <div class="flicker-img">
+                  <a href="#"><img src="{{ url_for('static', filename='img/portfolio/1.jpg') }}" alt=""></a>
+                  <a href="#"><img src="{{ url_for('static', filename='img/portfolio/2.jpg') }}" alt=""></a>
+                  <a href="#"><img src="{{ url_for('static', filename='img/portfolio/3.jpg') }}" alt=""></a>
+                  <a href="#"><img src="{{ url_for('static', filename='img/portfolio/4.jpg') }}" alt=""></a>
+                  <a href="#"><img src="{{ url_for('static', filename='img/portfolio/5.jpg') }}" alt=""></a>
+                  <a href="#"><img src="{{ url_for('static', filename='img/portfolio/6.jpg') }}" alt=""></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-area-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="copyright text-center">
+              <p>
+                &copy; Copyright <strong>Plagiatize</strong>. All Rights Reserved
+              </p>
+            </div>
+            <!-- <div class="credits">
+              
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=eBusiness
+             
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='lib/venobox/venobox.min.js') }}"></script> 
+  <script src="{{ url_for('static', filename='lib/wow/wow.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='lib/parallax/parallax.js') }}"></script>
+  <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='lib/nivo-slider/js/jquery.nivo.slider.js') }}" type="text/javascript"></script>  
+  <script src="{{ url_for('static', filename='lib/isotope/isotope.pkgd.min.js') }}"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="{{ url_for('static', filename='contactform/contactform.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/scriptAjax.js') }}"></script>
+</body>
+
+</html>
